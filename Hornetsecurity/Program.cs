@@ -22,7 +22,7 @@ public class Program
 
             if (command?.ToLower() == "exit") break;
 
-            if (!FileUtils.IsPathValid(command!))
+            if (!FileUtils.IsFolderPathValid(command!))
             {
                 Console.WriteLine("Invalid path! Please try agen!");
                 continue;

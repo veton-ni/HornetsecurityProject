@@ -16,23 +16,6 @@ namespace Hornetsecurity.Service
             _files = _repository.GetAll().ToHashSet().ToDictionary(x => x.Path);
         }
 
-        public void SaveChangesToDB()
-        {
-            var newFiles = GetFileDetails().Select(x => x.Value).Where(x => x.Scanned == 0).ToList();
-            var updateFiles = GetFileDetails().Select(x => x.Value).Where(x => x.Scanned > 1).ToList();
-
-
-            newFiles.ForEach(x => x.Scanned++);
-
-            _repository.AddRange(newFiles);
-            foreach(var udpate in updateFiles)
-            {
-                _repository.Update(udpate);
-            }
-
-            _repository.Complete();
-
-        }
 
         public Dictionary<string, HashesFile> GetFileDetails() => _files;
 
@@ -41,7 +24,7 @@ namespace Hornetsecurity.Service
         {
             List<Task> TaskList = new List<Task>();
 
-            foreach (var file in GetAllFilesInFolder(path))
+            foreach (var file in ReadFilesInFolder(path))
             {
                 var taks = new Task<int>(() => ScanFile(file));
                 taks.Start();
@@ -52,22 +35,24 @@ namespace Hornetsecurity.Service
 
             Console.WriteLine($"All threads are finished!");
         }
-        private List<string> GetAllFilesInFolder(string path)
+
+        private List<string> ReadFilesInFolder(string path)
         {
             List<string> files = new();
 
-            if (FileUtils.IsPathValid(path))
+            if (FileUtils.IsFolderPathValid(path))
             {
                 string[] fileEntries = Directory.GetFiles(path);
                 files.AddRange(fileEntries);
 
                 string[] subdirectoryEntries = Directory.GetDirectories(path);
                 foreach (string subdirectory in subdirectoryEntries)
-                    files.AddRange(GetAllFilesInFolder(subdirectory));
+                    files.AddRange(ReadFilesInFolder(subdirectory));
 
             }
             return files;
         }
+
         private int ScanFile(string path)
         {
             if (GetFileDetails().ContainsKey(path))
@@ -83,6 +68,23 @@ namespace Hornetsecurity.Service
             return 1;
         }
 
+
+        public void SaveChangesToDB()
+        {
+            var newFiles = GetFileDetails().Select(x => x.Value).Where(x => x.Scanned == 0).ToList();
+            var updateFiles = GetFileDetails().Select(x => x.Value).Where(x => x.Scanned > 1).ToList();
+
+            newFiles.ForEach(x => x.Scanned++);
+
+            _repository.AddRange(newFiles);
+            foreach (var udpate in updateFiles)
+            {
+                _repository.Update(udpate);
+            }
+
+            _repository.Complete();
+
+        }
 
     }
 }

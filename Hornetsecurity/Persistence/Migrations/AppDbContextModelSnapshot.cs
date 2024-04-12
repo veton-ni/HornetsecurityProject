@@ -31,7 +31,7 @@ namespace Hornetsecurity.Persistence.Migrations
 
                     b.Property<string>("Md5")
                         .IsRequired()
-                        .HasMaxLength(2000)
+                        .HasMaxLength(4000)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -44,12 +44,12 @@ namespace Hornetsecurity.Persistence.Migrations
 
                     b.Property<string>("Sha1")
                         .IsRequired()
-                        .HasMaxLength(2000)
+                        .HasMaxLength(4000)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Sha256")
                         .IsRequired()
-                        .HasMaxLength(2000)
+                        .HasMaxLength(4000)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Path");

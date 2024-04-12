@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Hornetsecurity.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitHornetsecurityDB : Migration
+    public partial class ChangingMaxLengthOfPropertyes : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,9 +17,9 @@ namespace Hornetsecurity.Persistence.Migrations
                 {
                     Path = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
                     Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    Md5 = table.Column<string>(type: "TEXT", maxLength: 2000, nullable: false),
-                    Sha1 = table.Column<string>(type: "TEXT", maxLength: 2000, nullable: false),
-                    Sha256 = table.Column<string>(type: "TEXT", maxLength: 2000, nullable: false),
+                    Md5 = table.Column<string>(type: "TEXT", maxLength: 4000, nullable: false),
+                    Sha1 = table.Column<string>(type: "TEXT", maxLength: 4000, nullable: false),
+                    Sha256 = table.Column<string>(type: "TEXT", maxLength: 4000, nullable: false),
                     FileSize = table.Column<long>(type: "INTEGER", nullable: false),
                     Scanned = table.Column<int>(type: "INTEGER", nullable: false),
                     LastSeen = table.Column<DateTime>(type: "TEXT", nullable: true)

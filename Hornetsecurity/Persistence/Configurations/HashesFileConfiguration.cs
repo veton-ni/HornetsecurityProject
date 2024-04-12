@@ -20,11 +20,11 @@ namespace Hornetsecurity.Persistence.Configurations
                     .IsRequired();
 
             builder.Property(t => t.Md5)
-                    .HasMaxLength(2000);
+                    .HasMaxLength(4000);
             builder.Property(t => t.Sha1)
-                    .HasMaxLength(2000);
+                    .HasMaxLength(4000);
             builder.Property(t => t.Sha256)
-                    .HasMaxLength(2000);
+                    .HasMaxLength(4000);
 
 
             //public string Md5 { get; set; }

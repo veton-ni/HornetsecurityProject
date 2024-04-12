@@ -9,10 +9,11 @@ namespace Hornetsecurity.Utils
     internal class FileUtils
     {
 
-        public static bool IsPathValid(string path)
+        public static bool IsFolderPathValid(string path)
         {
             return Directory.Exists(path);
         }
+
         public static bool CreateFile(string path)
         {
             if(File.Exists(path)) return true;
@@ -43,9 +44,6 @@ namespace Hornetsecurity.Utils
 
             return details;
         }
-
-
-
 
 
         private static string CalculateM5(string path)

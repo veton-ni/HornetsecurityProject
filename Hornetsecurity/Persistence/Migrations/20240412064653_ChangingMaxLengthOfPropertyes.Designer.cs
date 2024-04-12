@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hornetsecurity.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240411220938_InitHornetsecurityDB")]
-    partial class InitHornetsecurityDB
+    [Migration("20240412064653_ChangingMaxLengthOfPropertyes")]
+    partial class ChangingMaxLengthOfPropertyes
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,7 +34,7 @@ namespace Hornetsecurity.Persistence.Migrations
 
                     b.Property<string>("Md5")
                         .IsRequired()
-                        .HasMaxLength(2000)
+                        .HasMaxLength(4000)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -47,12 +47,12 @@ namespace Hornetsecurity.Persistence.Migrations
 
                     b.Property<string>("Sha1")
                         .IsRequired()
-                        .HasMaxLength(2000)
+                        .HasMaxLength(4000)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Sha256")
                         .IsRequired()
-                        .HasMaxLength(2000)
+                        .HasMaxLength(4000)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Path");
