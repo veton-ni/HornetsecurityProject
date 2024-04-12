@@ -17,7 +17,8 @@ The first application will ask for "Folder Path:" to scan it.
 - After finishing scanning files inside the folder and getting all the information we need we will store them in the database. 
 
 For each file, we will scan only once if we have information about it in our database. 
+For reading information about the file we are running them in multithread.
 
 After finishing the scan, we will print in console some information about the folders which are scanned, and we will ask for the next path. 
 
-If we write "exit" the application will be shut down. 
+If we write "exit" the application will shut down. 
