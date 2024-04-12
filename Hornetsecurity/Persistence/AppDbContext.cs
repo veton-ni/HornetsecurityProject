@@ -24,7 +24,7 @@ namespace Hornetsecurity.Persistence
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=.\\hashfiles.db.db");
+            optionsBuilder.UseSqlite("Data Source=.\\hashfiles.db");
         }
     }
 }

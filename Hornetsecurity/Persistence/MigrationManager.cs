@@ -10,10 +10,6 @@ namespace Hornetsecurity.Persistence
 
         public static void ApplyMigrations()
         {
-            FileUtils.CreateFile("hashfiles.db");
-
-
-
             var dbContext = new AppDbContext();
 
             var migrationList = dbContext.Database.GetMigrations();
